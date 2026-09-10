@@ -330,3 +330,11 @@ A migração não substitui o seu `data\central-gestao.sqlite` por um banco vazi
 ## 15. Observação sobre memória de cálculo
 
 A Central fornece cálculo administrativo e armazenamento de parâmetros. A fórmula automática de retroativo é deliberadamente genérica e editável. Definição jurídica/contábil do valor efetivamente devido depende do contrato, CCT aplicável, data-base, cláusulas de repactuação, eventos que compõem a planilha de custos e regras de faturamento da relação específica.
+
+<img width="1096" height="630" alt="Captura de tela 2026-09-10 134935" src="https://github.com/user-attachments/assets/efecb93f-d231-43b3-807f-1e0e0053af34" />
+<img width="1895" height="856" alt="Captura de tela 2026-09-10 135124" src="https://github.com/user-attachments/assets/4ed14fc4-cbb8-40c2-bdf3-fb368186d57f" />
+<img width="1601" height="767" alt="Captura de tela 2026-09-10 135112" src="https://github.com/user-attachments/assets/c327adce-f3cd-439c-9607-1ea8d1412c06" />
+<img width="1590" height="837" alt="Captura de tela 2026-09-10 135054" src="https://github.com/user-attachments/assets/bf55846c-5930-4f27-a55a-185c55095b33" />
+<img width="1573" height="421" alt="Captura de tela 2026-09-10 135039" src="https://github.com/user-attachments/assets/4f582fd4-aa60-4614-ac9f-b583fe2c78a8" />
+<img width="1897" height="863" alt="Captura de tela 2026-09-10 135013" src="https://github.com/user-attachments/assets/84840b0f-f182-4de7-a387-0763c8aae4a9" />
+
