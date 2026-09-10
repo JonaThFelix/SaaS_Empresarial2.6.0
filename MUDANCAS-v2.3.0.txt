@@ -1,0 +1,21 @@
+NOVO NA v2.3.0
+===============
+- Renovacao versionada de contrato (CT1 -> CT2) sem sobrescrever o historico.
+- Contagem e historico formal de renovacoes, periodos, valores e observacoes.
+- Protecao permanente da cadeia de contratos renovados contra exclusao/reativacao.
+- Copia opcional de postos, alocacoes e continuidade de substituicoes ao renovar.
+- Alocacao editavel depois de criada.
+- Tipo Titular/Ferista/Reserva/Rendicao/Cobertura.
+- Regimes 12x36, 24x72, 6x1, 5x2, Diario e Personalizado.
+- Dia par/impar e data-base do ciclo.
+- Ferista/reserva padrao e campo de quem rende/cobre.
+- Ferias/afastamentos com periodo, motivo e historico.
+- Edicao de ferias/afastamentos.
+- Status Ferias/Afastado no colaborador refletindo automaticamente na escala.
+- Substituicoes vinculadas ao titular e ao afastamento.
+- Edicao de substituicoes.
+- Deteccao de substituto indisponivel.
+- Modulo Escalas com projecao ate o fim da vigencia.
+- Indicacao de posicoes descobertas e vagas sem cobertura definida.
+- Exportacao CSV da escala.
+- Acesso LAN habilitado por padrao via HOST=0.0.0.0.

@@ -1,0 +1,35 @@
+CENTRAL DE GESTÃO EMPRESARIAL v2.1.0
+CONSULTA CNPJ DIRETA NA BASE OFICIAL RECEITA FEDERAL / SERPRO
+
+IMPORTANTE
+---------
+O preenchimento automático de CNPJ já funciona sem esta configuração usando uma fonte pública de dados cadastrais.
+
+Para consulta DIRETA à API oficial Consulta CNPJ do SERPRO/Receita Federal, é necessário possuir Consumer Key e Consumer Secret fornecidos pelo SERPRO após habilitação/contratação do serviço.
+
+COMO CONFIGURAR SEM ALTERAR O WINDOWS
+-------------------------------------
+1. Na mesma pasta do sistema, crie um arquivo chamado:
+   SERPRO_RECEITA.env.bat
+
+2. Coloque dentro dele, substituindo pelos seus dados reais:
+
+   @echo off
+   set "SERPRO_CNPJ_CONSUMER_KEY=SUA_CONSUMER_KEY"
+   set "SERPRO_CNPJ_CONSUMER_SECRET=SEU_CONSUMER_SECRET"
+
+3. Salve o arquivo.
+4. Feche a Central de Gestão e abra novamente por INICIAR_WINDOWS.bat.
+
+O INICIAR_WINDOWS.bat lê esse arquivo apenas para o processo da Central de Gestão. Não cria variáveis permanentes no Windows.
+
+SEGURANÇA
+---------
+- Não envie esse arquivo para outras pessoas.
+- Não coloque Consumer Key/Secret em prints, e-mails ou repositórios públicos.
+- Faça backup do arquivo em local seguro se decidir usar a integração oficial.
+
+OPCIONAL
+--------
+Se o SERPRO fornecer um endpoint de produção diferente do padrão, acrescente:
+   set "SERPRO_CNPJ_BASE_URL=https://ENDERECO-FORNECIDO-PELO-SERPRO/.../basica"

@@ -1,0 +1,69 @@
+CENTRAL DE GESTAO EMPRESARIAL - MUDANCAS v2.4.0
+================================================
+
+1. DOCUMENTOS CONTRATUAIS
+- Novo acervo por contrato.
+- Tipos: contrato, aditivo, apolice, ata, CCT, proposta/medicao e outros.
+- Upload autenticado de PDF, DOC/DOCX, XLS/XLSX, JPG/PNG, TXT e CSV.
+- Limite de 15 MB por arquivo.
+- Titulo, referencia, vencimento, observacoes, tamanho e SHA-256.
+- Download autenticado; exclusao permanente somente ADMIN/SUPERADMIN.
+- Arquivos armazenados em uploads/contracts e metadados no SQLite.
+- Dashboard alerta documentos/apolices vencidos ou com vencimento em ate 90 dias.
+
+2. PRAZO DE VENCIMENTO
+- Aviso reforcado dentro do contrato e das telas relacionadas.
+- Informa dias exatos ate vencer ou dias exatos ja vencidos.
+- Faixas: vencido, hoje, ate 4, ate 30, ate 90 e vigente.
+
+3. RENOVACAO COM MEMORIA FINANCEIRA
+- Renovar continua criando uma nova versao sem sobrescrever a anterior.
+- Registra valor-base, novo valor, diferenca mensal e percentual.
+- Registra CCT/instrumento, referencia, data-base e data do reajuste.
+- Registra efeito financeiro e periodo retroativo.
+- Calcula pro-rata padrao por 30 dias: diferenca / 30 x dias.
+- Retroativo final e editavel.
+- Valor de medicao final e editavel.
+- Historico de repactuacoes/reajustes da serie contratual.
+- Nova repactuacao pode ser criada mesmo sem renovar o contrato.
+- Resumo da ultima memoria financeira aparece no contrato.
+
+4. LOG DO COLABORADOR
+- Tela unica com uniformes atualmente em posse e quantidade.
+- Materiais de estoque em posse.
+- Patrimonios atualmente alocados.
+- Linha do tempo de entregas, devolucoes, perdas, estoque e patrimonio.
+- Na tela de editar colaborador aparecem os totais atuais e link para o log.
+
+5. ESTOQUE
+- Botao Excluir ao lado de Movimentar/Editar para ADMIN.
+- Movimentos podem ser editados ou excluidos; saldo e recalculado.
+- Item sem historico operacional pode ser excluido.
+- Se houver historico operacional, a exclusao em bloco e bloqueada para preservar o log; o movimento incorreto pode ser corrigido/excluido individualmente.
+
+6. UNIFORMES
+- Botao Excluir para ADMIN.
+- Movimentos podem ser editados/excluidos com recalculo do saldo.
+- Saldo inicial passou a possuir movimento-base para recalculo seguro.
+- Item com entrega/troca/devolucao/perda no historico nao e apagado em bloco, preservando o log do colaborador.
+
+7. PATRIMONIO
+- Abrir/Editar/Alocar/Devolver/Manutencao continuam disponiveis.
+- Alocacoes patrimoniais agora podem ser editadas ou excluidas por ADMIN.
+- Status do bem e recalculado depois da alteracao.
+- Patrimonio sem historico pode ser excluido; com alocacao/manutencao a exclusao em bloco e bloqueada para preservar o rastreio.
+
+8. ALOCACOES DE COLABORADORES
+- Editar e Substituir continuam disponiveis.
+- ADMIN possui botao Excluir alocacao, com registro na auditoria.
+
+9. BACKUP COMPLETO
+- BACKUP_WINDOWS.bat agora gera ZIP com banco + documentos anexados.
+- Configuracoes possui backup completo e opcao SQLite isolada.
+- Restaurador aceita ZIP completo ou SQLite legado.
+
+10. COMPATIBILIDADE
+- Migracao automatica a partir da v2.3.x.
+- Banco existente e preservado pelo atualizador.
+- Sem Docker, WSL ou alteracao de BIOS.
+- HOST=0.0.0.0 mantido para acesso pela rede local.

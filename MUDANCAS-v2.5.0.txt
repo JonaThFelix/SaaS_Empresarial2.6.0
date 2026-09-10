@@ -1,0 +1,43 @@
+CENTRAL DE GESTAO EMPRESARIAL - MUDANCAS v2.5.0
+
+1. ESCALA REDESENHADA - MATRIZ TIPO PLANILHA
+- A visualizacao padrao de Escalas agora usa postos/locais nas linhas e datas nas colunas.
+- Cada celula reune TODA a equipe daquele posto naquela data.
+- Um posto com 10 profissionais nao gera mais 10 linhas repetidas na visualizacao principal.
+- Ferias, afastamentos, substitutos e vagas descobertas aparecem dentro da propria celula.
+- Periodos longos sao separados por mes para evitar uma unica tabela interminavel.
+- A coluna do posto fica fixa durante a rolagem horizontal.
+- Datas exibem numero do dia e dia da semana.
+
+2. QUADRO POR DIA
+- Nova visualizacao alternativa com uma secao por data.
+- Cada data possui apenas uma linha por posto.
+- A equipe completa aparece agrupada em cartoes compactos dentro da mesma celula.
+- Ocorrencias e substituicoes ficam consolidadas ao lado da equipe.
+- Exibe previsto, coberto e descoberto sem repetir uma linha por colaborador.
+
+3. EXPORTACAO DE ESCALA MAIS PROFISSIONAL
+- O CSV agora e agrupado por data + posto.
+- A equipe e exportada em uma unica coluna por posto/data.
+- Inclui efetivo previsto, ocorrencias/substituicoes, quantidade descoberta e status de cobertura.
+
+4. AJUDA CONTEXTUAL NOS FORMULARIOS
+- Campos que podem gerar duvida passam a mostrar uma orientacao curta abaixo do controle.
+- Um icone ? no titulo do campo repete a orientacao como tooltip.
+- A ajuda e centralizada e reutilizada pelos modulos.
+- Foram cobertos, entre outros: competencia, vencimento, data de movimento, conta bancaria,
+  conciliação, ciclo 12x36, par/impar, ferista, rendicao, cobertura, CCT, data-base,
+  efeito financeiro, retroativo, medicao, saldo inicial, estoque minimo, movimentacoes,
+  patrimonio, fardamento e vencimento de documentos.
+- Campos simples permanecem sem aviso para manter a interface limpa.
+
+5. PRESERVACAO DE DADOS
+- A v2.5.0 nao exige recriacao do banco SQLite.
+- O arquivo data\central-gestao.sqlite da v2.4 e preservado.
+- A atualizacao altera principalmente interface, apresentacao da escala e orientacao dos formularios.
+- Documentos existentes em uploads nao sao apagados.
+
+6. COMPATIBILIDADE
+- Mantidas todas as funcionalidades da v2.4: contratos versionados, documentos, repactuacao,
+  colaboradores, estoque, uniformes, patrimonio, financeiro, conciliacao, auditoria e backups.
+- Acesso pela rede local continua usando HOST=0.0.0.0.

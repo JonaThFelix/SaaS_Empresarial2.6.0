@@ -1,0 +1,44 @@
+CENTRAL DE GESTAO EMPRESARIAL v2.6.0 - SEM DOCKER
+===================================================
+
+ATUALIZANDO UMA CENTRAL QUE JA POSSUI DADOS
+- NAO substitua sua pasta por uma instalacao limpa.
+- Use o pacote CORRECAO-ESCALA-TURNOS-CADASTROS-v2.6.0.zip.
+- O atualizador faz backup do banco e do codigo antes da migracao.
+- O arquivo data\central-gestao.sqlite existente e preservado.
+- A pasta uploads existente tambem e preservada.
+
+INSTALACAO NOVA
+1) Extraia toda a pasta.
+2) Execute INICIAR_WINDOWS.bat.
+3) Aguarde o Node portatil ser preparado na primeira execucao.
+4) Acesse http://localhost:3000.
+5) Leia CREDENCIAIS_INICIAIS.txt.
+
+NOVIDADES v2.6.0
+- Matricula obrigatoria e unica por empresa.
+- CPF obrigatorio e unico por empresa.
+- Protecao de duplicidade tambem no banco SQLite.
+- 12x36 classificado em Dia Par, Dia Impar, Noite Par e Noite Impar.
+- Postos podem ser dimensionados separadamente nesses quatro grupos.
+- Escala separa visualmente equipe diurna e noturna em cada data/posto.
+- Quadro diario separado por turnos.
+- Alocacoes e historicos extensos podem ser recolhidos/expandidos.
+
+EXEMPLO DE POSTO 24H / 12X36
+Equipe total: 4 vigilantes
+- 1 Dia Par
+- 1 Dia Impar
+- 1 Noite Par
+- 1 Noite Impar
+Em dias pares trabalham o Dia Par e o Noite Par; em dias impares trabalham o Dia Impar e o Noite Impar.
+
+OUTROS PCS NA MESMA REDE
+A Central inicia em HOST=0.0.0.0.
+No PC principal execute ipconfig e consulte o Endereco IPv4.
+Nos demais PCs abra: http://IP-DO-PC-PRINCIPAL:3000
+Todos acessam o mesmo banco data\central-gestao.sqlite.
+Se o Firewall perguntar, permita Node.js somente em Redes privadas.
+
+BACKUP
+Use BACKUP_WINDOWS.bat. Desde a v2.4, o backup completo em ZIP inclui banco SQLite + pasta uploads/documentos.

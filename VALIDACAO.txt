@@ -1,0 +1,122 @@
+CENTRAL DE GESTAO EMPRESARIAL v2.6.0 - VALIDACAO TECNICA
+Data: 13/08/2026
+
+OBJETIVO DESTA VERSAO
+- impedir matricula e CPF repetidos por empresa;
+- classificar 12x36 em Dia Par, Dia Impar, Noite Par e Noite Impar;
+- separar visualmente equipe diurna e noturna na escala;
+- dimensionar posto 24h por turno/paridade;
+- permitir recolher grandes blocos de alocacoes e historicos.
+
+TESTES EXECUTADOS
+
+1. SINTAXE
+- node --check src/db.js: OK
+- node --check src/schedule.js: OK
+- node --check src/routes_workforce.js: OK
+- node --check src/routes_clients.js: OK
+- node --check src/routes_schedule.js: OK
+- node --check src/ui.js: OK
+- node --check src/app.js: OK
+
+2. INICIALIZACAO / SAUDE
+- banco SQLite temporario criado do zero: OK
+- /health: status=ok, version=2.6.0, database=sqlite, docker=false: OK
+- PRAGMA integrity_check: ok
+- PRAGMA foreign_key_check: 0 ocorrencias
+
+3. UNICIDADE DE COLABORADORES
+- cadastro de matricula M001 seguido de m001: BLOQUEADO
+- erro no SQLite: MATRICULA_DUPLICADA
+- cadastro de CPF ja existente: BLOQUEADO
+- erro no SQLite: CPF_DUPLICADO
+- rota web de cadastro com matricula repetida: redireciona com mensagem explicativa: OK
+- rota web de cadastro com CPF repetido: redireciona com mensagem explicativa: OK
+- indices auxiliares por organizacao/CPF e matricula normalizada: OK
+
+4. MIGRACAO DE BANCO ANTIGO COM DUPLICIDADE PRE-EXISTENTE
+Foi criado um banco de teste simulando dados antigos com duas matriculas/CPFs duplicados antes das regras v2.6.
+- abertura/migracao pela v2.6: OK
+- registros antigos preservados: OK
+- nenhuma exclusao automatica de colaborador antigo: OK
+- novas tentativas de duplicidade depois da migracao: BLOQUEADAS
+- integrity_check apos migracao: ok
+- foreign_key_check apos migracao: 0
+
+5. POSTO 24H / 12X36 - CENARIO TESTADO
+Contrato: CT-TESTE
+Posto: Portaria 24h
+Equipe total: 4
+- 1 Vigilante Dia Par
+- 1 Vigilante Dia Impar
+- 1 Vigilante Noite Par
+- 1 Vigilante Noite Impar
+
+Campos de dimensionamento exibidos no cadastro do posto:
+- 12x36 - Dia Par: OK
+- 12x36 - Dia Impar: OK
+- 12x36 - Noite Par: OK
+- 12x36 - Noite Impar: OK
+
+6. VALIDACAO DE ALOCACAO 12X36
+- formulario exibe Turno operacional: OK
+- opcoes Diurno / dia e Noturno / noite: OK
+- formulario exibe Paridade: OK
+- tentativa 12x36 com turno Noturno e paridade "Nao se aplica": BLOQUEADA
+- mensagem: "No 12x36 selecione obrigatoriamente Par ou Impar.": OK
+
+7. PROJECAO DA ESCALA
+Periodo testado: 12/08/2026 e 13/08/2026
+
+12/08/2026 (dia par):
+- Diurno previsto: 1
+- Vigilante Dia Par projetado: OK
+- Noturno previsto: 1
+- Vigilante Noite Par projetado: OK
+- vagas indevidas: 0
+
+13/08/2026 (dia impar):
+- Diurno previsto: 1
+- Vigilante Dia Impar projetado: OK
+- Noturno previsto: 1
+- Vigilante Noite Impar projetado: OK
+- vagas indevidas: 0
+
+Matriz:
+- uma linha por posto: OK
+- blocos Diurno e Noturno dentro da data: OK
+- rotulos Dia Par / Dia Impar / Noite Par / Noite Impar: OK
+
+Quadro diario:
+- coluna Equipe diurna: OK
+- coluna Equipe noturna: OK
+- uma linha por posto/dia: OK
+
+8. EXPORTACAO CSV
+CSV do mesmo periodo retornou:
+12/08/2026 - Equipe total 4 - Posicoes previstas no dia 2 - Diurno 1 - Noturno 1 - COBERTO
+13/08/2026 - Equipe total 4 - Posicoes previstas no dia 2 - Diurno 1 - Noturno 1 - COBERTO
+- colunas Previsto diurno/Equipe diurna: OK
+- colunas Previsto noturno/Equipe noturna: OK
+- classificacao 12x36 nos nomes: OK
+
+9. PAINEIS RECOLHIVEIS
+Contrato:
+- "Alocacoes e historico de colaboradores" usa painel recolhivel: OK
+- contador de registros no cabecalho: OK
+
+Colaborador:
+- "Historico de alocacao" recolhivel: OK
+- "Ferias, afastamentos e indisponibilidades" recolhivel: OK
+- conteudo continua presente no HTML e nenhum registro e removido ao recolher: OK
+
+10. PRESERVACAO
+- a migracao usa ALTER/ensureColumn para novos campos; nao recria o banco: OK
+- dados antigos de contratos, colaboradores, financeiro, estoque, patrimonio, uniformes e documentos nao sao limpos pela migracao: OK
+- uploads nao fazem parte da migracao e permanecem na pasta existente: OK
+
+OBSERVACAO SOBRE WINDOWS
+Os testes funcionais do backend, SQLite e HTML foram executados com o mesmo runtime Node usado pelo projeto. O arquivo .BAT de atualizacao foi revisado e derivado do atualizador anterior com backup/rollback, mas este ambiente de validacao nao e um Windows nativo; portanto o duplo clique no .BAT deve ser executado no computador Windows de destino.
+
+RESULTADO
+Os fluxos-alvo da v2.6.0 passaram nos testes descritos acima.

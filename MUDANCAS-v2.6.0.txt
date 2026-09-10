@@ -1,0 +1,46 @@
+CENTRAL DE GESTAO EMPRESARIAL - MUDANCAS v2.6.0
+
+1. MATRICULA E CPF UNICOS
+- Matricula passou a ser obrigatoria no cadastro de colaborador.
+- CPF passou a ser obrigatorio e deve conter 11 digitos.
+- A Central bloqueia cadastro/edicao com matricula ja existente na mesma empresa.
+- A comparacao de matricula ignora maiusculas/minusculas: MAT001 e mat001 sao o mesmo identificador.
+- CPF duplicado tambem e bloqueado.
+- A protecao existe na interface/backend e no proprio SQLite por triggers.
+- Bancos antigos com duplicidade nao sao apagados durante a migracao; a tela de Colaboradores mostra um alerta para regularizacao.
+
+2. 12x36: DIA PAR, DIA IMPAR, NOITE PAR E NOITE IMPAR
+- Toda alocacao 12x36 exige Turno (Diurno/Noturno) e Paridade (Par/Impar).
+- A escala apresenta a classificacao completa: Dia Par, Dia Impar, Noite Par ou Noite Impar.
+- Registros antigos recebem inferencia de turno a partir do horario/descricao quando possivel.
+
+3. DIMENSIONAMENTO DO POSTO POR TURNO E PARIDADE
+- O cadastro/edicao de posto agora possui campos separados para:
+  * 12x36 Dia Par;
+  * 12x36 Dia Impar;
+  * 12x36 Noite Par;
+  * 12x36 Noite Impar.
+- O sistema calcula automaticamente os totais diurno, noturno e geral a partir desses quatro campos quando preenchidos.
+- Permanece compativel com postos antigos que usam apenas efetivo total ou divisao simples Dia/Noite.
+
+4. ESCALA PROFISSIONAL POR POSTO, DIA E TURNO
+- A matriz continua com uma linha por posto e datas nas colunas.
+- Dentro de cada data ha blocos separados para Diurno e Noturno.
+- Nomes mostram a classificacao 12x36 correspondente.
+- A cobertura e as vagas sao conferidas no turno/paridade corretos.
+- Um posto 24h com 4 vigilantes pode ser modelado como 1 Dia Par + 1 Dia Impar + 1 Noite Par + 1 Noite Impar.
+- Em dia par entram as posicoes Dia Par e Noite Par; em dia impar entram Dia Impar e Noite Impar.
+- O Quadro diario tambem separa Equipe diurna e Equipe noturna.
+- A exportacao CSV inclui previsto/equipe diurna e noturna separadamente.
+
+5. TELAS RECOLHIVEIS PARA GRANDES VOLUMES
+- No contrato, Alocacoes e historico de colaboradores virou painel recolhivel.
+- No colaborador, Historico de alocacao e Ferias/Afastamentos viraram paineis recolhiveis.
+- O cabecalho mostra a quantidade de registros.
+- Recolher/expandir afeta somente a visualizacao; nenhum dado e apagado.
+
+6. PRESERVACAO E COMPATIBILIDADE
+- A atualizacao nao recria data\central-gestao.sqlite.
+- As novas colunas sao adicionadas automaticamente por migracao.
+- Dados, documentos em uploads, financeiro, contratos, uniformes, patrimonio e historicos anteriores sao preservados.
+- Acesso em rede local continua com HOST=0.0.0.0.

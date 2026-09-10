@@ -1,0 +1,13 @@
+{
+  "name": "central-gestao-saas-sem-docker",
+  "version": "2.6.0",
+  "private": true,
+  "description": "Central de Gestão Empresarial v2.6.0 - matrícula/CPF únicos, escala 12x36 por dia/noite e paridade, painéis recolhíveis, portátil sem Docker",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "start": "node src/app.js",
+    "check": "node --check src/app.js"
+  }
+}
